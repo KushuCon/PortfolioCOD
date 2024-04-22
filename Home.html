@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="Home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="Kode3.jpg" class="logo">
+                <ul>
+                    <li><a href="Home.html"  target="_blank">Home</a></li>
+                    <li><a href="about.html" target="_blank">About Me</a></li>
+                   
+                    <li><a href="Resume.pdf" target="_blank">Portfolio</a></li>
+                    <li><a href="contact.html"  target="_blank">Contact</a></li>
+                    
+                </ul> 
+            </nav>
+            <div class="header-text">
+                <p><span class="typing-animation"></span></p>
+                <h1>
+                    Hi, I'm <span>Kaustubh</span><br> Consul from Jaipur.
+                </h1>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/kaustubh-consul-253b6324a/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <a href="Resume.pdf" download class="download">DOWNLOAD RESUME</a>
+    </div>
+
+    <script>
+        const textElement = document.querySelector('.typing-animation');
+        const texts = ["Video Editor", "Programmer", "Social Media Manager","Adobe Illustrator"];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingDelay = 100;
+
+        function type() {
+            const currentText = texts[textIndex];
+            if (!isDeleting) {
+                textElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === currentText.length) {
+                    setTimeout(() => {
+                        isDeleting = true;
+                    }, 750);
+                }
+            } else {
+                textElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                    setTimeout(type, 300);
+                    return;
+                }
+            }
+            setTimeout(type, isDeleting ? typingDelay : typingDelay);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            type();
+            const socialIcons = document.querySelectorAll('.social-icons i');
+
+            socialIcons.forEach((icon, index) => {
+            icon.style.opacity = '1'; // Make sure icons are fully visible
+            icon.style.animation = `wave 2s ease-in-out ${index * 0.2}s infinite alternate`;
+        
+        });
+     });
+    </script>
+
+</body>
+</html>
